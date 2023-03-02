@@ -1,0 +1,19 @@
+<label>Pokemon ID </label>
+
+
+<input type="text" [(ngModel)]="id" size="3" maxlength="3">
+<input value="{{id}}" size="3" readonly>
+<h1> ID : {{id}} </h1>
+
+<label>Filtre </label>
+<input type="text" [(ngModel)]="filtre">
+
+<button type="button" (click)="buttonClick()"> GO! </button>
+
+<select [(ngModel)]="pokemonSelect" >
+  <option  [value]="pokemon.id" *ngFor="let pokemon of (pokemons | filterPokemonPipe: 'name': filtre)">
+    {{ pokemon.name }}
+  </option>
+</select>
+
+<h1> ID pokémon sélectionné : {{pokemonSelect}} </h1>
