@@ -1,7 +1,15 @@
 Pokemon sélectionné {{detail.name}}
 
 <BR>
-Talents
-<ul>
-  <li *ngFor="let ability of detail.abilities"> {{ability.ability.name}} </li>
-</ul>
+
+<p-card header="Abilities">
+  <ul>
+    <li *ngFor="let ability of detail.abilities"> {{ability.ability.name}} </li>
+  </ul>
+</p-card>
+
+<p-card header="Moves">
+  <ul>
+    <li *ngFor="let move of detail.moves"> {{move.move.name}} </li>
+  </ul>
+</p-card>

@@ -16,6 +16,9 @@ export class MyComponentComponent {
   pokemons : Pokemon[] = []
   pokeDetail! : PokeDetail
 
+  date!: Date
+  checked = true
+
   constructor(private pokeService: PokeApiService, private pokeShareService: PokeShareInfoService) {}
 
   ngOnInit() {
