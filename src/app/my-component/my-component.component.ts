@@ -36,12 +36,14 @@ export class MyComponentComponent {
   buttonClick() {
     console.log("pokemon recherché ", this.filterPokeName)
     console.log("pokemon sélectionné ", this.pokemonSelect)
+
     if(this.pokemonSelect != ''){
       this.pokeShareService.setValue(this.pokemonSelect)
 
       this.pokeService.getPokeInfo(this.pokemonSelect).subscribe((data) => {
         this.pokeDetail = data
-        console.log(data)})
+        console.log(data)
+      })
 
     }
 

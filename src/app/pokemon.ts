@@ -22,7 +22,7 @@ export interface PokeDetail {
   forms:                    Species[];
   game_indices:             GameIndex[];
   height:                   number;
-  held_items:               any[];
+  held_items:               HeldItem[];
   id:                       number;
   is_default:               boolean;
   location_area_encounters: string;
@@ -51,6 +51,16 @@ export interface Species {
 export interface GameIndex {
   game_index: number;
   version:    Species;
+}
+
+export interface HeldItem {
+  item:            Species;
+  version_details: VersionDetail[];
+}
+
+export interface VersionDetail {
+  rarity:  number;
+  version: Species;
 }
 
 export interface Move {

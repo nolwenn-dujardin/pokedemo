@@ -2,6 +2,10 @@ Pokemon sélectionné {{detail.name}}
 
 <BR>
 
+<p-card header={{detail.name}}>
+  <img src={{detail.sprites.front_default}}/>
+</p-card>
+
 <p-card header="Abilities">
   <ul>
     <li *ngFor="let ability of detail.abilities"> {{ability.ability.name}} </li>

@@ -8,14 +8,16 @@
 <label>Filtre </label>
 <input [(ngModel)]="filterPokeName">
 
-<button type="button" (click)="buttonClick()"> GO! </button>
-
-<select [(ngModel)]="pokemonSelect" >
+<select [(ngModel)]="pokemonSelect">
   <option [value]="pokemon.id"
           *ngFor="let pokemon of pokemons | filterPokemonPipe: 'name': filterPokeName">
     {{ pokemon.name }}
   </option>
 </select>
+
+<BR>
+
+<button type="button" (click)="buttonClick()"> GO! </button>
 
 <h1> ID pokémon sélectionné : {{pokemonSelect}} </h1>
 
