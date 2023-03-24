@@ -4,6 +4,22 @@ Ce projet est la réalisation du sujet disponible [ici](https://github.com/barai
 
 La page du dépot est disponible [ici](https://nolwenn-dujardin.github.io/pokedemo/)
 
+Pour accéder à la page sur votre machine personnelle :
+- Cloner le dépôt sur votre machine
+```console
+git clone https://github.com/nolwenn-dujardin/pokedemo.git
+```
+- Depuis le dossier du dépôt, lancer le serveur de développement
+```console
+ng serve
+```
+
+- Accéder à la page depuis n'importe quel navigateur depuis l'url suivante
+```
+http://localhost:4200/
+```
+
+
 ### Fonctionnalités
 
 On limite la récupération de pokémons par réquête à 50. 
