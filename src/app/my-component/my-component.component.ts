@@ -17,6 +17,9 @@ export class MyComponentComponent {
   pokeDetail! : PokeDetail
   pokeDescr! : PokeDescr
 
+  limit = 0;
+  offset = 1;
+
   date!: Date
   checked = true
 
@@ -32,6 +35,7 @@ export class MyComponentComponent {
       })
       console.log(this.pokemons)
     })
+    this.limit = this.pokemons.length
   }
 
   buttonClick() {
@@ -50,11 +54,23 @@ export class MyComponentComponent {
     }
   }
 
+  getMorePokemon(){
+    this.pokeService.getMorePoke(this.offset).subscribe((data) => {
+      console.log(data)
+      length = this.pokemons.length + this.limit * this.offset +1
+
+      data.results.forEach((e, index) => {
+        this.pokemons.push(new Pokemon((index+length).toString(),e.name))
+      })
+      this.offset++
+      console.log(this.pokemons)
+    })
+  }
+
   getPokedexDescription() {
     this.pokeService.getPokeDescr(this.pokemonSelect).subscribe((data => {
       this.pokeDescr = data
-      console.log("pokemon description", data)
-      console.log("descr", data.flavor_text_entries[0].flavor_text)
+      console.log("descr", data.flavor_text_entries)
     }))
 
 

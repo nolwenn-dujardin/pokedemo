@@ -17,9 +17,16 @@ export class PokeApiService {
     return this.http.get<PokeServiceRes>(apiUrl+"?limit="+limit)
   }
 
+  getMorePoke(nb: number) : Observable<PokeServiceRes> {
+    console.log(apiUrl+"?limit="+limit+"&offset="+limit*nb)
+    return this.http.get<PokeServiceRes>(apiUrl+"?limit="+limit+"&offset="+limit*nb)
+  }
+
+
   getPokeInfo(poke: string): Observable<PokeDetail> {
     return this.http.get<PokeDetail>(apiUrl + poke)
   }
+
 
   getPokeDescr(poke: string): Observable<PokeDescr> {
     return this.http.get<PokeDescr>(apiPokedexUrl + poke)

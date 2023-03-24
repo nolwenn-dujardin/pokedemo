@@ -16,6 +16,8 @@ export class PokedetailComponent {
   @Input('descr')
   descr!: PokeDescr
 
+  flavorText = []
+
   constructor(private pokeShareService: PokeShareInfoService) {
     this.pokeShareService.getObservable().
       subscribe(e => console.log('e',e))
