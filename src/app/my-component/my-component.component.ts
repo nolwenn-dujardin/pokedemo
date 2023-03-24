@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {PokeDetail, Pokemon} from "../pokemon";
+import {PokeDescr, PokeDetail, Pokemon} from "../pokemon";
 import {PokeApiService} from "../poke-api.service";
 import {PokeShareInfoService} from "../poke-share-info.service";
 
@@ -15,6 +15,7 @@ export class MyComponentComponent {
   filterPokeName = '';
   pokemons : Pokemon[] = []
   pokeDetail! : PokeDetail
+  pokeDescr! : PokeDescr
 
   date!: Date
   checked = true
@@ -45,7 +46,18 @@ export class MyComponentComponent {
         console.log(data)
       })
 
+      this.getPokedexDescription()
     }
+  }
+
+  getPokedexDescription() {
+    this.pokeService.getPokeDescr(this.pokemonSelect).subscribe((data => {
+      this.pokeDescr = data
+      console.log("pokemon description", data)
+      console.log("descr", data.flavor_text_entries[0].flavor_text)
+    }))
+
 
   }
+
 }

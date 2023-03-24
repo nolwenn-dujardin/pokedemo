@@ -1,19 +1,29 @@
-Pokemon sélectionné {{detail.name}}
+
 
 <BR>
+<div class="wrapper">
+  <p-card header="Sprite" class="one">
+    <img src={{detail.sprites.front_default}}/>
+  </p-card>
+  <div>
+    <h2 class="two"> #{{detail.id}} {{detail.name}}</h2>
+    {{descr.flavor_text_entries[0].flavor_text}}
+  </div>
 
-<p-card header={{detail.name}}>
-  <img src={{detail.sprites.front_default}}/>
-</p-card>
+</div>
 
-<p-card header="Abilities">
-  <ul>
-    <li *ngFor="let ability of detail.abilities"> {{ability.ability.name}} </li>
-  </ul>
-</p-card>
 
-<p-card header="Moves">
-  <ul>
-    <li *ngFor="let move of detail.moves"> {{move.move.name}} </li>
-  </ul>
-</p-card>
+<div class="wrapper">
+  <p-card header="Abilities" class="one">
+    <ul>
+      <li *ngFor="let ability of detail.abilities"> {{ability.ability.name}} </li>
+    </ul>
+  </p-card>
+
+  <p-card header="Moves" class="two">
+    <ul>
+      <li *ngFor="let move of detail.moves"> {{move.move.name}} </li>
+    </ul>
+  </p-card>
+</div>
+
