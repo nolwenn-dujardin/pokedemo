@@ -5,7 +5,6 @@ import {PokeDescr, PokeDetail, PokeServiceRes} from "./pokemon";
 
 const apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
 const apiPokedexUrl = 'https://pokeapi.co/api/v2/pokemon-species/';
-const limit = 50;
 
 @Injectable({
   providedIn: 'root'
@@ -13,22 +12,24 @@ const limit = 50;
 export class PokeApiService {
   constructor(private http: HttpClient) { }
 
-  getPokeList(): Observable<PokeServiceRes> {
+  //Can be remove, since we can use getMorePoke(limit, offset) with an offset of 0
+  getPokeList(limit: number): Observable<PokeServiceRes> {
     return this.http.get<PokeServiceRes>(apiUrl+"?limit="+limit)
   }
 
-  getMorePoke(nb: number) : Observable<PokeServiceRes> {
-    console.log(apiUrl+"?limit="+limit+"&offset="+limit*nb)
-    return this.http.get<PokeServiceRes>(apiUrl+"?limit="+limit+"&offset="+limit*nb)
+  getMorePoke(limit: number, offset: number) : Observable<PokeServiceRes> {
+    console.log(apiUrl+"?limit="+limit+"&offset="+offset)
+    return this.http.get<PokeServiceRes>(apiUrl+"?limit="+limit+"&offset="+offset)
   }
 
-
   getPokeInfo(poke: string): Observable<PokeDetail> {
+    console.log(apiUrl+poke)
     return this.http.get<PokeDetail>(apiUrl + poke)
   }
 
 
   getPokeDescr(poke: string): Observable<PokeDescr> {
+    console.log(apiPokedexUrl+poke)
     return this.http.get<PokeDescr>(apiPokedexUrl + poke)
   }
 }

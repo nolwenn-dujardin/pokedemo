@@ -13,12 +13,14 @@ export class MyComponentComponent {
   id: string = '';
   pokemonSelect: string = '';
   filterPokeName = '';
+
+  //Info : Max 1281 pokemons
   pokemons : Pokemon[] = []
   pokeDetail! : PokeDetail
   pokeDescr! : PokeDescr
 
-  limit = 0;
-  offset = 1;
+  limit = 50;
+  count = '';
 
   date!: Date
   checked = true
@@ -26,8 +28,10 @@ export class MyComponentComponent {
   constructor(private pokeService: PokeApiService, private pokeShareService: PokeShareInfoService) {}
 
   ngOnInit() {
-    this.pokeService.getPokeList().subscribe((data) => {
+    //Get a few pokemons from the Api and populate the list of pokemon
+    this.pokeService.getPokeList(this.limit).subscribe((data) => {
       console.log(data)
+      this.count = data.count
 
      data.results.forEach((e, index) => {
        //Add 1 to index since pokemon id start at 1
@@ -35,9 +39,11 @@ export class MyComponentComponent {
       })
       console.log(this.pokemons)
     })
-    this.limit = this.pokemons.length
   }
 
+  /**
+   * Fetch detail from pokemon selected (if not empty)
+   */
   buttonClick() {
     console.log("pokemon recherché ", this.filterPokeName)
     console.log("pokemon sélectionné ", this.pokemonSelect)
@@ -54,19 +60,25 @@ export class MyComponentComponent {
     }
   }
 
+  /**
+   * Fetch more pokemon from the api and add them to the list of already fetched pokemon
+   */
   getMorePokemon(){
-    this.pokeService.getMorePoke(this.offset).subscribe((data) => {
+    let offset = this.pokemons.length
+    this.pokeService.getMorePoke(this.limit, offset).subscribe((data) => {
       console.log(data)
-      length = this.pokemons.length + this.limit * this.offset +1
+      let length = this.pokemons.length
 
       data.results.forEach((e, index) => {
-        this.pokemons.push(new Pokemon((index+length).toString(),e.name))
+        this.pokemons.push(new Pokemon((index+length+1).toString(),e.name))
       })
-      this.offset++
       console.log(this.pokemons)
     })
   }
 
+  /**
+   * Get information about the pokemon selected from the pokedex
+   */
   getPokedexDescription() {
     this.pokeService.getPokeDescr(this.pokemonSelect).subscribe((data => {
       this.pokeDescr = data

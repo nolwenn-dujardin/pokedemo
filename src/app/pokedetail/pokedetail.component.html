@@ -1,16 +1,19 @@
-
-
 <BR>
 <div class="wrapper">
   <p-card header="Sprite" class="one">
     <img src={{detail.sprites.front_default}}/>
   </p-card>
-  <div>
-    <h2 class="two"> #{{detail.id}} {{detail.name}}</h2>
-    <div>{{descr.flavor_text_entries[1].flavor_text}}</div>
-    <div>{{descr.flavor_text_entries[2].flavor_text}}</div>
-    <div>{{descr.flavor_text_entries[3].flavor_text}}</div>
-  </div>
+  <p-card class="two" header="#{{detail.id}} {{detail.name}}">
+    <div *ngIf="descr.flavor_text_entries.length >= 3">
+      <div>{{descr.flavor_text_entries[0].flavor_text}}</div>
+      <div>{{descr.flavor_text_entries[1].flavor_text}}</div>
+      <div>{{descr.flavor_text_entries[2].flavor_text}}</div>
+    </div>
+
+    <div *ngIf="descr.flavor_text_entries.length < 3">
+      description unavailable
+    </div>
+  </p-card>
 
 </div>
 

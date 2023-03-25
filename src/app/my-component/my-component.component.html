@@ -1,7 +1,7 @@
 <label>Pokemon ID </label>
 
 <input type="text" [(ngModel)]="id" size="3" maxlength="3" placeholder="ex: 25">
-<input value="{{id}}" size="3" readonly>
+<input value="{{id}}" size="4" readonly>
 ID : {{id}}
 
 <div>
@@ -11,7 +11,7 @@ ID : {{id}}
   <select [(ngModel)]="pokemonSelect">
     <option [value]="pokemon.id"
             *ngFor="let pokemon of pokemons | filterPokemonPipe: 'name': filterPokeName">
-      {{ pokemon.name }}
+      {{ pokemon.id }} {{ pokemon.name }}
     </option>
   </select>
 
@@ -19,7 +19,12 @@ ID : {{id}}
 
   <button type="button" (click)="getMorePokemon()">Fetch more pokemon</button>
 
-  <h1> ID pokémon sélectionné : {{pokemonSelect}} </h1>
+  <div>
+    Pokemon fetched : {{ pokemons.length }}/{{ count }}
+  </div>
+
+  <h1> Pokemon id : {{pokemonSelect}} </h1>
+
 
   <BR>
   <div *ngIf="pokeDetail">
@@ -27,7 +32,7 @@ ID : {{id}}
   </div>
 </div>
 
-
+<BR>
 
 <p-calendar [(ngModel)]="date"></p-calendar>
 <p-toggleButton onLabel="True" offLabel="False" [(ngModel)]="checked"></p-toggleButton>
